@@ -27,9 +27,9 @@ public class Roll : MonoBehaviour
         {
             Rigidbody2D.AddForce(Speed * Time.deltaTime * Vector2.right, ForceMode2D.Force);
         }
-        else if (Input.GetKey(KeyCode.Space))
+        else if (Input.GetKeyDown(KeyCode.Space))
         {
-            Rigidbody2D.AddForce(Vector2.up * JumpForce, ForceMode2D.Impulse);
+            Rigidbody2D.AddForce(Vector2.up * JumpForce, ForceMode2D.Force);
         }
         Transform.localScale += Vector3.one * Rigidbody2D.velocity.x * Time.deltaTime;
 
