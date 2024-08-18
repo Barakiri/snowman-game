@@ -21,6 +21,7 @@ public class Sizer : MonoBehaviour
     {
         
     }
+
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.collider.CompareTag("Hot"))

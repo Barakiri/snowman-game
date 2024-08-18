@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Hot
   - Cold
+  - Pickup
   layers:
   - Default
   - TransparentFX
