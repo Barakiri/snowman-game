@@ -5,7 +5,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-
     [Header("Movement")]
     public float speed = 15f;
     public float jumpForce;
@@ -48,7 +47,7 @@ public class PlayerController : MonoBehaviour
         inputY = Mathf.Abs(Input.GetAxis("Jump"));
         rb.AddForce(Time.deltaTime * new Vector2(inputX * speed, 0), ForceMode2D.Force);
         if (grounded && Input.GetButton("Jump"))
-            rb.velocity = new Vector2(rb.velocity.x, inputY * jumpForce);
+            rb.velocity = new Vector2(rb.velocity.x, inputY * jumpForce * GetComponent<Sizer>().radius);
 
         if (rb.velocity.y < 0)
         {
@@ -59,13 +58,10 @@ public class PlayerController : MonoBehaviour
             rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1f) * Time.deltaTime;
         }
 
-
-
         if (grounded)
             SetEmission( Mathf.Lerp(0, particleMaxRate, particleSpeedCurve.Evaluate(Mathf.Clamp01(Mathf.Abs(rb.velocity.x) / particleMaxSpeed))) );
         else
             SetEmission(0);
-
     }
 
     void SetEmission(float rate)
