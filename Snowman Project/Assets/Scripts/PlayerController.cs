@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+
+    [Header("Movement")]
     public float speed = 15f;
     public float jumpForce;
 
@@ -14,13 +16,14 @@ public class PlayerController : MonoBehaviour
     public float fallMultiplier = 2.5f;
     public float lowJumpMultiplier = 2f;
     bool grounded;
+    public float groundedDistance = 1.1f;
 
+    [Header("Movement Particles")]
     public ParticleSystem particleSystem1;
     public ParticleSystem particleSystem2;
     public float particleMaxRate = 30f;
     public float particleMaxSpeed = 30f;
     public AnimationCurve particleSpeedCurve;
-    public float groundedDistance = 1.1f;
 
     // Start is called before the first frame update
     void Start()
@@ -35,7 +38,6 @@ public class PlayerController : MonoBehaviour
         grounded = false;
         foreach (RaycastHit2D hit in hits) 
         {
-            print(hit.collider.name);
             if (hit.collider.tag != "Player")
                 grounded = true;
         }
@@ -64,24 +66,7 @@ public class PlayerController : MonoBehaviour
         else
             SetEmission(0);
 
-        //print(grounded);
     }
-
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "Hot" || collision.gameObject.tag == "Cold")
-    //    {
-    //        grounded = true;
-    //    }
-    //}
-    //
-    //private void OnCollisionExit2D(Collision2D collision)
-    //{
-    //    if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "Hot" || collision.gameObject.tag == "Cold")
-    //    {
-    //        grounded = false;
-    //    }
-    //}
 
     void SetEmission(float rate)
     {
@@ -91,10 +76,4 @@ public class PlayerController : MonoBehaviour
         emission1.rateOverTime = rate;
         emission2.rateOverTime = rate;
     }
-
-    //private void OnDrawGizmos()
-    //{
-    //    Gizmos.color = Color.red;
-    //    Gizmos.DrawLine(transform.position, transform.position + (-Vector3.up * GetComponent<Sizer>().radius * groundedDistance));
-    //}
 }
