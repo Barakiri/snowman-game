@@ -8,6 +8,8 @@ TagManager:
   - Cold
   - Pickup
   - Ground
+  - Icicle
+  - Roof
   layers:
   - Default
   - TransparentFX
@@ -17,7 +19,7 @@ TagManager:
   - UI
   - Player
   - Ground
-  - 
+  - Icicle
   - 
   - 
   - 

@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public Checklist Checklist;
+    public Sizer playerSize;
+    public bool usePickups = true;
 
     public List<GameObject> RequiredPickups = new List<GameObject>();
     List<GameObject> CollectedPickups;
@@ -26,8 +28,11 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        CollectedPickups = new List<GameObject>();
-        Checklist = GameObject.Find("Checklist").GetComponent<Checklist>();
+        if (usePickups)
+        {
+            CollectedPickups = new List<GameObject>();
+            Checklist = GameObject.Find("Checklist").GetComponent<Checklist>();
+        }
     }
 
     // Update is called once per frame

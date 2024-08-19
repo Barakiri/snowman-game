@@ -10,12 +10,15 @@ public class Checklist : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 0; i < GameManager.Instance.RequiredPickups.Count; i++)
+        if (GameManager.Instance.usePickups == true)
         {
-            GameObject newChecklistItem = Instantiate(ChecklistItem, transform);
-            newChecklistItem.GetComponentInChildren<TextMeshProUGUI>().text = GameManager.Instance.RequiredPickups[i].name;
-            newChecklistItem.GetComponent<Toggle>().onValueChanged.AddListener(delegate { Strikeout(GetComponent<Toggle>()); });
-            newChecklistItem.name = GameManager.Instance.RequiredPickups[i].name;
+            for (int i = 0; i < GameManager.Instance.RequiredPickups.Count; i++)
+            {
+                GameObject newChecklistItem = Instantiate(ChecklistItem, transform);
+                newChecklistItem.GetComponentInChildren<TextMeshProUGUI>().text = GameManager.Instance.RequiredPickups[i].name;
+                newChecklistItem.GetComponent<Toggle>().onValueChanged.AddListener(delegate { Strikeout(GetComponent<Toggle>()); });
+                newChecklistItem.name = GameManager.Instance.RequiredPickups[i].name;
+            }
         }
     }
 
