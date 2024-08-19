@@ -41,29 +41,55 @@ public class Sizer : MonoBehaviour
     {
         sizeDeathCheck();
         if (radius <= maxSizeForMusic)
-            musicManager.SetMusicLevel((radius - minSizeForMusic) / maxSizeForMusic);
+        {
+            musicManager.SetMusicLevel(radius / maxSizeForMusic);
+        }
+        else
+            musicManager.SetMusicLevel(1f);
 
         if (!touchingCold) sfxManager.SetGrowingVolume(0f);
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            ShrinkSize();
+        }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            GrowSize(200f);
+        }
     }
 
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.collider.CompareTag("Hot"))
         {
-            Vector3 localScale = transform.localScale - (Vector3.one * ShrinkingRate * Time.deltaTime);
-            if (radius <= TrueMinSize)
-                transform.localScale = Vector3.one * TrueMinSize;
-            else
-                transform.localScale = localScale;
+            ShrinkSize();
         }
         else if (collision.collider.CompareTag("Cold"))
         {
             touchingCold = true;
-            transform.localScale += Vector3.one * GrowthRate * Time.deltaTime * Mathf.Abs(rb.velocity.x);
-            sfxManager.SetGrowingVolume( Mathf.Abs(rb.velocity.x) / maxSpeedForGrowingAudio);
+            GrowSize(Mathf.Abs(rb.velocity.x));
         }
+    }
+
+    void GrowSize(float amount)
+    {
+        transform.localScale += Vector3.one * GrowthRate * Time.deltaTime * amount;
+        sfxManager.SetGrowingVolume( amount / maxSpeedForGrowingAudio);
         radius = transform.localScale[0];
     }
+
+    void ShrinkSize()
+    {
+        Vector3 localScale = transform.localScale - (Vector3.one * ShrinkingRate * Time.deltaTime);
+        if (radius <= TrueMinSize)
+            transform.localScale = Vector3.one * TrueMinSize;
+        else
+            transform.localScale = localScale;
+
+        radius = transform.localScale[0];
+    }
+
 
     private void OnCollisionExit2D(Collision2D collision)
     {
