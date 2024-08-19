@@ -63,8 +63,6 @@ public class Icicle : MonoBehaviour
                 SetSize(currentRegrowthTime / regrowthDuration);
             }
         }
-
-        print(rb.isKinematic);
     }
 
     public void CollisionEvent()

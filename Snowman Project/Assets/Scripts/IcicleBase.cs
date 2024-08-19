@@ -37,7 +37,6 @@ public class IcicleBase : MonoBehaviour
                 currentRegrowthCooldownTime = 0f;
                 GameObject icicle;
                 icicle = Instantiate(iciclePrefab, icicleStartingPoint + transform.localPosition, icicleStartingRotation * transform.localRotation, transform);
-                print(icicleStartScale);
                 icicle.GetComponent<Icicle>().canBeBroken = false;
                 icicle.GetComponent<Icicle>().SetSize(0f);
                 icicle.GetComponent<Icicle>().CanMove(false);

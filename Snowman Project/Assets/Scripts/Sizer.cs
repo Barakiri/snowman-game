@@ -15,13 +15,13 @@ public class Sizer : MonoBehaviour
     public float DeathDelay = 5f;
     public float rtimer = 0f;
 
-    Rigidbody2D rigidbody2D;
+    Rigidbody2D rb;
 
     public float radius = 1;
     // Start is called before the first frame update
     void Start()
     {
-        rigidbody2D = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -43,7 +43,7 @@ public class Sizer : MonoBehaviour
         }
         else if (collision.collider.CompareTag("Cold"))
         {
-            transform.localScale += Vector3.one * GrowthRate * Time.deltaTime * Mathf.Abs(rigidbody2D.velocity.x);
+            transform.localScale += Vector3.one * GrowthRate * Time.deltaTime * Mathf.Abs(rb.velocity.x);
         }
         radius = transform.localScale[0];
     }
