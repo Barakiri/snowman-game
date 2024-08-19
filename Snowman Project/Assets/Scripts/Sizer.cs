@@ -6,6 +6,7 @@ using System;
 
 public class Sizer : MonoBehaviour
 {
+
     public float ShrinkingRate = 5f;
     public float GrowthRate = 10f;
 
@@ -18,6 +19,17 @@ public class Sizer : MonoBehaviour
     Rigidbody2D rb;
 
     public float radius = 1;
+
+    [Header("Music")]
+    public MusicManager musicManager;
+    public float maxSizeForMusic = 3f;
+    public float minSizeForMusic = 0.5f;
+
+    [Header("SFX")]
+    public SFXManager sfxManager;
+    public float maxSpeedForGrowingAudio = 2f;
+    bool touchingCold = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,11 +40,14 @@ public class Sizer : MonoBehaviour
     void Update()
     {
         sizeDeathCheck();
+        if (radius <= maxSizeForMusic)
+            musicManager.SetMusicLevel((radius - minSizeForMusic) / maxSizeForMusic);
+
+        if (!touchingCold) sfxManager.SetGrowingVolume(0f);
     }
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        print(collision.collider);
         if (collision.collider.CompareTag("Hot"))
         {
             Vector3 localScale = transform.localScale - (Vector3.one * ShrinkingRate * Time.deltaTime);
@@ -43,9 +58,17 @@ public class Sizer : MonoBehaviour
         }
         else if (collision.collider.CompareTag("Cold"))
         {
+            touchingCold = true;
             transform.localScale += Vector3.one * GrowthRate * Time.deltaTime * Mathf.Abs(rb.velocity.x);
+            sfxManager.SetGrowingVolume( Mathf.Abs(rb.velocity.x) / maxSpeedForGrowingAudio);
         }
         radius = transform.localScale[0];
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Cold"))
+            touchingCold = false;
     }
 
     private void sizeDeathCheck()
