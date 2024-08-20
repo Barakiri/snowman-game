@@ -177,9 +177,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 133
-        y: 750
+        y: 751
         width: 498
-        height: 499
+        height: 498
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -197,10 +197,10 @@ TextureImporter:
       name: Tile set_4
       rect:
         serializedVersion: 2
-        x: 750
-        y: 749
-        width: 501
-        height: 501
+        x: 751
+        y: 751
+        width: 498
+        height: 498
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -218,10 +218,10 @@ TextureImporter:
       name: Tile set_5
       rect:
         serializedVersion: 2
-        x: 1369
-        y: 749
-        width: 500
-        height: 501
+        x: 1370
+        y: 750
+        width: 498
+        height: 498
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
