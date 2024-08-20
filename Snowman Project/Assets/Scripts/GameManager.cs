@@ -48,7 +48,8 @@ public class GameManager : MonoBehaviour
             if (optionalPickups[i].pickup == pickup)
             {
                 optionalPickups[i].grabbed = true;
-                optionalPickups[i].cosmetic.SetActive(true);
+                CosmeticManager.Instance.cosmetics[i].enabled = true;
+                CosmeticManager.Instance.CosmeticUpdate(true);
             }
         }
     }
@@ -59,6 +60,6 @@ public class Collectible
 {
     public string name;
     public GameObject pickup;
-    public GameObject cosmetic;
+    public int cosmetic;
     [HideInInspector] public bool grabbed = false;
 }
