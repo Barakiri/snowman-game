@@ -70,6 +70,14 @@ public class Sizer : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Icicle"))
+        {
+            collision.transform.parent.GetComponent<Icicle>().Break();
+        }
+    }
+
     void GrowSize(float amount)
     {
         transform.localScale += Vector3.one * GrowthRate * Time.deltaTime * amount;

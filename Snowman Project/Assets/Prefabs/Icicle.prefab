@@ -140,6 +140,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7095289795831083146}
   - component: {fileID: 7756550500354480885}
+  - component: {fileID: 4310348387315718594}
   m_Layer: 0
   m_Name: Icicle
   m_TagString: Untagged
@@ -179,7 +180,34 @@ MonoBehaviour:
   isBroken: 0
   iciclePrefab: {fileID: 798607203872777477, guid: e6505ec780e7d7c44820fc978efbf99a, type: 3}
   icicleStartScale: {x: 0, y: 0, z: 0}
-  regrowthCooldown: 10
+  regrowthCooldown: 4
+--- !u!50 &4310348387315718594
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3792766937569661468}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1001 &9012156868946400811
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -191,6 +219,14 @@ PrefabInstance:
     - target: {fileID: 798607203872777477, guid: e6505ec780e7d7c44820fc978efbf99a, type: 3}
       propertyPath: m_Name
       value: IciclePivot
+      objectReference: {fileID: 0}
+    - target: {fileID: 4389008791242316588, guid: e6505ec780e7d7c44820fc978efbf99a, type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4389008791242316588, guid: e6505ec780e7d7c44820fc978efbf99a, type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: -0.28692815
       objectReference: {fileID: 0}
     - target: {fileID: 7093805672378527608, guid: e6505ec780e7d7c44820fc978efbf99a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -238,15 +274,51 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8396760205312488275, guid: e6505ec780e7d7c44820fc978efbf99a, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Icicle
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4389008791242316588, guid: e6505ec780e7d7c44820fc978efbf99a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 798607203872777477, guid: e6505ec780e7d7c44820fc978efbf99a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 162471286047565217}
   m_SourcePrefab: {fileID: 100100000, guid: e6505ec780e7d7c44820fc978efbf99a, type: 3}
 --- !u!4 &2261895804973250899 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7093805672378527608, guid: e6505ec780e7d7c44820fc978efbf99a, type: 3}
   m_PrefabInstance: {fileID: 9012156868946400811}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8504104419955192622 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 798607203872777477, guid: e6505ec780e7d7c44820fc978efbf99a, type: 3}
+  m_PrefabInstance: {fileID: 9012156868946400811}
+  m_PrefabAsset: {fileID: 0}
+--- !u!50 &162471286047565217
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8504104419955192622}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

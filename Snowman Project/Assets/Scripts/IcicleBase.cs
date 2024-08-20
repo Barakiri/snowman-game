@@ -38,7 +38,7 @@ public class IcicleBase : MonoBehaviour
                 GameObject icicle;
                 icicle = Instantiate(iciclePrefab, icicleStartingPoint + transform.localPosition, icicleStartingRotation * transform.localRotation, transform);
                 icicle.GetComponent<Icicle>().canBeBroken = false;
-                icicle.GetComponent<Icicle>().SetSize(0f);
+                icicle.GetComponent<Icicle>().SetAlpha(0f);
                 icicle.GetComponent<Icicle>().CanMove(false);
                 isBroken = false;
             }

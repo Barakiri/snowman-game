@@ -30,6 +30,10 @@ public class PlayerController : MonoBehaviour
     public float landAudioMediumThreshold = 2f;
     public float landAudioHardThreshold = 5f;
 
+    public float jumpAudioSoftThreshold = 0f;
+    public float jumpAudioMediumThreshold = 2f;
+    public float jumpAudioHardThreshold = 5f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -53,7 +57,25 @@ public class PlayerController : MonoBehaviour
         inputY = Mathf.Abs(Input.GetAxis("Jump"));
         rb.AddForce(Time.deltaTime * new Vector2(inputX * speed, 0), ForceMode2D.Force);
         if (grounded && Input.GetButton("Jump"))
+        {
             rb.velocity = new Vector2(rb.velocity.x, inputY * jumpForce * GetComponent<Sizer>().radius);
+
+            if (rb.velocity.y >= jumpAudioHardThreshold)
+            {
+                sfxManager.PlayClip(SFX.JUMPHARD, 1f);
+                //Debug.Log($"{GetImpulse(collision)} - HARD");
+            }
+            else if (rb.velocity.y >= jumpAudioMediumThreshold)
+            {
+                sfxManager.PlayClip(SFX.JUMPMED, 1f);
+                //Debug.Log($"{GetImpulse(collision)} - MED");
+            }
+            else if (rb.velocity.y >= jumpAudioSoftThreshold)
+            {
+                sfxManager.PlayClip(SFX.JUMPSOFT, 1f);
+                //Debug.Log($"{GetImpulse(collision)} - SOFT");
+            }
+        }
 
         if (rb.velocity.y < 0)
         {

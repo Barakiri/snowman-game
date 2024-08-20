@@ -28,19 +28,11 @@ public class Icicle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (canBeBroken)
-        {
-            if (GameManager.Instance.playerSize.radius >= sizeBreakThreshold)
-                CanMove(true);
-            else
-                CanMove(false);
-        }
-
         //print(transform.parent.GetComponent<IcicleBase>().icicleStartScale);
 
         if (broken)
         {
-            SetSize(Mathf.Abs((currentMeltTime / meltLength) - 1f));
+            SetAlpha(Mathf.Abs((currentMeltTime / meltLength) - 1f));
             currentMeltTime += Time.deltaTime;
             if (currentMeltTime > meltLength)
             {
@@ -52,7 +44,7 @@ public class Icicle : MonoBehaviour
         {
             if (currentRegrowthTime >= regrowthDuration)
             {
-                SetSize(1f);
+                SetAlpha(1f);
                 currentRegrowthTime = 0f;
                 canBeBroken = true;
                 gameObject.transform.localScale = transform.parent.GetComponent<IcicleBase>().icicleStartScale;
@@ -60,35 +52,38 @@ public class Icicle : MonoBehaviour
             else
             {
                 currentRegrowthTime += Time.deltaTime;
-                SetSize(currentRegrowthTime / regrowthDuration);
+                SetAlpha(currentRegrowthTime / regrowthDuration);
             }
         }
     }
 
     public void CollisionEvent()
     {
-        if (!rb.isKinematic)
+        if (GameManager.Instance.playerSize.radius >= sizeBreakThreshold)
         {
-            broken = true;
-            baseIcicle.isBroken = true;
+            CanMove(true);
         }
+        else
+            CanMove(false);
     }
 
-    public void SetSize(float t)
+    public void Break()
     {
-        gameObject.transform.localScale = Vector3.Lerp(Vector3.zero, transform.parent.GetComponent<IcicleBase>().icicleStartScale, t);
+        broken = true;
+        baseIcicle.isBroken = true;
+    }
+
+    public void SetAlpha(float t)
+    {
+        transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.Lerp(new Color(1f,1f,1f,0f), Color.white, t);
     }
 
     public void CanMove(bool input)
     {
         child = transform.GetChild(0).gameObject;
         rb = child.GetComponent<Rigidbody2D>();
-        if (input)
-            rb.bodyType = RigidbodyType2D.Dynamic;
-        else
-            rb.bodyType = RigidbodyType2D.Static;
+        rb.constraints = input ? RigidbodyConstraints2D.None : RigidbodyConstraints2D.FreezeAll;
 
-        rb.isKinematic = !input;
         canMove = input;
     }
 }
