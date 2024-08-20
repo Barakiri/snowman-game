@@ -88,6 +88,7 @@ public class Icicle : MonoBehaviour
         else
             rb.bodyType = RigidbodyType2D.Static;
 
+        rb.isKinematic = !input;
         canMove = input;
     }
 }
