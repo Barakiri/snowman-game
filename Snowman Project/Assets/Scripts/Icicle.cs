@@ -59,7 +59,7 @@ public class Icicle : MonoBehaviour
 
     public void CollisionEvent()
     {
-        if (GameManager.Instance.playerSize.radius >= sizeBreakThreshold)
+        if (PlayerController.Instance.GetComponent<Sizer>().radius >= sizeBreakThreshold)
         {
             CanMove(true);
         }

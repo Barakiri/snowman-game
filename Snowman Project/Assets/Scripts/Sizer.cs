@@ -46,14 +46,14 @@ public class Sizer : MonoBehaviour
 
         
 
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            ShrinkSize();
-        }
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            GrowSize(200f);
-        }
+        //if (Input.GetKeyDown(KeyCode.K))
+        //{
+        //    ShrinkSize();
+        //}
+        //if (Input.GetKeyDown(KeyCode.L))
+        //{
+        //    GrowSize(200f);
+        //}
     }
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -115,7 +115,7 @@ public class Sizer : MonoBehaviour
         // Size based death check
         if (rtimer >= DeathDelay)
         {
-            print("death" + radius); // Add death logic here.
+            //print("death" + radius); // Add death logic here.
             return;
         }
         if (radius > MinSize)

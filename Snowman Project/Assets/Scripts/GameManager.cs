@@ -7,7 +7,6 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public Checklist Checklist;
-    public Sizer playerSize;
     public bool usePickups = true;
 
     public List<GameObject> RequiredPickups = new List<GameObject>();
