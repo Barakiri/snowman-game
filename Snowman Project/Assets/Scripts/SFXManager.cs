@@ -3,16 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum SFX { GROW, SHRINK }
+public enum SFX { GROW, SHRINK , LANDSOFT , LANDMED, LANDHARD , JUMPSOFT , JUMPMED , JUMPHARD }
 
 public class SFXManager : MonoBehaviour
 {
-    public List<SFXProperty> props;
+    public List<SFXProperty> propsLoop;
+    public List<SFXProperty> propsOneShot;
 
     // Start is called before the first frame update
     void Start()
     {
-        if (props.Count == 0)
+        if (propsLoop.Count == 0)
         {
             gameObject.SetActive(false);
         }
@@ -21,7 +22,7 @@ public class SFXManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        foreach (var prop in props) 
+        foreach (var prop in propsLoop) 
         {
             //Debug.Log($"t: {prop.currentT}, start: {prop.start}, goal: {prop.goal}, volume: {prop.source.volume}");
             if (prop.source.volume != prop.goal)
@@ -36,14 +37,26 @@ public class SFXManager : MonoBehaviour
 
     SFXProperty FindEffect(SFX sfxType)
     {
-        for (int i = 0; i < props.Count; i++)
+        for (int i = 0; i < propsLoop.Count; i++)
         {
-            if (props[i].sfxType == sfxType)
+            if (propsLoop[i].sfxType == sfxType)
             {
-                return props[i];
+                return propsLoop[i];
+            }
+        }
+        for (int i = 0; i < propsOneShot.Count; i++)
+        {
+            if (propsOneShot[i].sfxType == sfxType)
+            {
+                return propsOneShot[i];
             }
         }
         return null;
+    }
+
+    public void PlayClip(SFX sfx, float volume)
+    {
+        FindEffect(sfx).source.PlayOneShot(FindEffect(sfx).source.clip, volume);
     }
 
     public void SetVolumeGoal(SFX sfx, float volume)

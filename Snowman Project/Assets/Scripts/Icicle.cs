@@ -83,7 +83,11 @@ public class Icicle : MonoBehaviour
     {
         child = transform.GetChild(0).gameObject;
         rb = child.GetComponent<Rigidbody2D>();
-        rb.isKinematic = !input;
+        if (input)
+            rb.bodyType = RigidbodyType2D.Dynamic;
+        else
+            rb.bodyType = RigidbodyType2D.Static;
+
         canMove = input;
     }
 }

@@ -24,6 +24,12 @@ public class PlayerController : MonoBehaviour
     public float particleMaxSpeed = 30f;
     public AnimationCurve particleSpeedCurve;
 
+    [Header("Movement Sounds")]
+    public SFXManager sfxManager;
+    public float landAudioSoftThreshold = 0f;
+    public float landAudioMediumThreshold = 2f;
+    public float landAudioHardThreshold = 5f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -62,6 +68,37 @@ public class PlayerController : MonoBehaviour
             SetEmission( Mathf.Lerp(0, particleMaxRate, particleSpeedCurve.Evaluate(Mathf.Clamp01(Mathf.Abs(rb.velocity.x) / particleMaxSpeed))) );
         else
             SetEmission(0);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+
+        if (GetImpulse(collision) >= landAudioHardThreshold)
+        {
+            sfxManager.PlayClip(SFX.LANDHARD, 1f);
+            Debug.Log($"{GetImpulse(collision)} - HARD");
+        }
+        else if (GetImpulse(collision) >= landAudioMediumThreshold)
+        {
+            sfxManager.PlayClip(SFX.LANDMED, 0.75f);
+            Debug.Log($"{GetImpulse(collision)} - MED");
+        }
+        else if (GetImpulse(collision) >= landAudioSoftThreshold)
+        {
+            sfxManager.PlayClip(SFX.LANDSOFT, 0.5f);
+            Debug.Log($"{GetImpulse(collision)} - SOFT");
+        }
+    }
+
+    private static float GetImpulse(Collision2D collision)
+    {
+        var impulse = 0f;
+        for (int i = collision.contactCount - 1; i >= 0; i--)
+        {
+            var contact = collision.GetContact(i);
+            impulse += new Vector2(contact.normalImpulse, contact.tangentImpulse).magnitude;
+        }
+        return impulse;
     }
 
     void SetEmission(float rate)
