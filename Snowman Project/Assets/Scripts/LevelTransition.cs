@@ -1,14 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Collector : MonoBehaviour
+public class LevelTransition : MonoBehaviour
 {
-    Rigidbody2D Rigidbody2D;
+    public int nextLevel;
+    public Image fade;
+
     // Start is called before the first frame update
     void Start()
     {
-        Rigidbody2D = GetComponent<Rigidbody2D>();
+        
     }
 
     // Update is called once per frame
@@ -19,10 +22,9 @@ public class Collector : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.CompareTag("Pickup"))
+        if ( collision.CompareTag("Player"))
         {
-            GameManager.Instance.CollectPickup(collision.gameObject);
-            Destroy(collision.gameObject);
+            
         }
     }
 }
