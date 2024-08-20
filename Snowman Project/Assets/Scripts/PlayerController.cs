@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController Instance;
+
     [Header("Movement")]
     public float speed = 15f;
     public float jumpForce;
@@ -18,8 +20,6 @@ public class PlayerController : MonoBehaviour
     public float groundedDistance = 1.1f;
 
     [Header("Movement Particles")]
-    public ParticleSystem particleSystem1;
-    public ParticleSystem particleSystem2;
     public float particleMaxRate = 30f;
     public float particleMaxSpeed = 30f;
     public AnimationCurve particleSpeedCurve;
@@ -34,6 +34,18 @@ public class PlayerController : MonoBehaviour
     public float jumpAudioHardThreshold = 5f;
     public float jumpCooldownMax = 0.3f;
     float jumpCooldown = 0f;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -133,8 +145,8 @@ public class PlayerController : MonoBehaviour
 
     void SetEmission(float rate)
     {
-        var emission1 = particleSystem1.emission;
-        var emission2 = particleSystem2.emission;
+        var emission1 = FollowPlayer.Instance.system1.emission;
+        var emission2 = FollowPlayer.Instance.system2.emission;
 
         emission1.rateOverTime = rate;
         emission2.rateOverTime = rate;

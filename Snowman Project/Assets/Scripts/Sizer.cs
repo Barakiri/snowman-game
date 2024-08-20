@@ -21,7 +21,6 @@ public class Sizer : MonoBehaviour
     public float radius = 1;
 
     [Header("Music")]
-    public MusicManager musicManager;
     public float maxSizeForMusic = 3f;
     public float minSizeForMusic = 0.5f;
 
@@ -40,10 +39,10 @@ public class Sizer : MonoBehaviour
         sizeDeathCheck();
         if (radius <= maxSizeForMusic)
         {
-            musicManager.SetMusicLevel(radius / maxSizeForMusic);
+            MusicManager.Instance.SetMusicLevel(radius / maxSizeForMusic);
         }
         else
-            musicManager.SetMusicLevel(1f);
+            MusicManager.Instance.SetMusicLevel(1f);
 
         
 

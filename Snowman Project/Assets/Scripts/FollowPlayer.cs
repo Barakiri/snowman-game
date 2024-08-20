@@ -4,12 +4,27 @@ using UnityEngine;
 
 public class FollowPlayer : MonoBehaviour
 {
+    public static FollowPlayer Instance;
+
+
     public Vector3 offset;
-    public Transform target;
-    public Sizer sizer;
+    public ParticleSystem system1;
+    public ParticleSystem system2;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     void Update()
     {
-        transform.position = target.position + new Vector3(offset.x, -sizer.radius, offset.z);
+        transform.position = PlayerController.Instance.transform.position + new Vector3(offset.x, -PlayerController.Instance.gameObject.GetComponent<Sizer>().radius, offset.z);
     }
 }
