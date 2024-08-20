@@ -71,6 +71,7 @@ public class Icicle : MonoBehaviour
     {
         broken = true;
         baseIcicle.isBroken = true;
+        transform.GetChild(0).GetComponent<PolygonCollider2D>().enabled = false;
     }
 
     public void SetAlpha(float t)

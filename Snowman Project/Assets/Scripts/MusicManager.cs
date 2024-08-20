@@ -15,6 +15,7 @@ public class MusicManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
     }
 
     public void SetTrackVolume(int track, float volume)
@@ -36,7 +37,7 @@ public class MusicManager : MonoBehaviour
             }
             if (i == currentTrack)
             {
-                SetTrackVolume(i, (t * (float)tracks.Count) - (int)(t * (float)tracks.Count)); 
+                SetTrackVolume(i, (t * (float)tracks.Count) - (int)(t * (float)tracks.Count));
             }
             if (i > currentTrack )
             {
