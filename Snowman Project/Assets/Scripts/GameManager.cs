@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,11 +7,9 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    public Checklist Checklist;
     public bool usePickups = true;
 
-    public List<GameObject> RequiredPickups = new List<GameObject>();
-    List<GameObject> CollectedPickups;
+    public List<Collectible> optionalPickups = new List<Collectible>();
 
     private void Awake()
     {
@@ -27,26 +26,39 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (usePickups)
-        {
-            CollectedPickups = new List<GameObject>();
-            Checklist = GameObject.Find("Checklist").GetComponent<Checklist>();
-        }
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.R))
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
+        //if(Input.GetKeyDown(KeyCode.R))
+        //{
+        //    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        //}
+
+
     }
+
 
     public void CollectPickup(GameObject pickup)
     {
-        print("hello");
-        CollectedPickups.Add(pickup);
-        Checklist.Check(pickup);
+        for (int i = 0; i < optionalPickups.Count; i++)
+        {
+            if (optionalPickups[i].pickup == pickup)
+            {
+                optionalPickups[i].grabbed = true;
+                optionalPickups[i].cosmetic.SetActive(true);
+            }
+        }
     }
+}
+
+[Serializable]
+public class Collectible
+{
+    public string name;
+    public GameObject pickup;
+    public GameObject cosmetic;
+    [HideInInspector] public bool grabbed = false;
 }
