@@ -12,7 +12,10 @@ public class SFXManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (props.Count == 0)
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     // Update is called once per frame
