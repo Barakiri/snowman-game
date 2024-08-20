@@ -4,18 +4,11 @@ using UnityEngine;
 
 public class IcicleCollider : MonoBehaviour
 {
-    //private void Update()
-    //{
-    //    if (!transform.parent.GetComponent<Icicle>().canMove)
-    //    {
-    //        GetComponent<Rigidbody2D>().velocity = Vector3.zero;
-    //    }
-    //}
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Icicle"))
         {
-            transform.parent.GetComponent<Icicle>().CollisionEvent();
+            collision.transform.parent.GetComponent<Icicle>().CollisionEvent();
         }
     }
 }
