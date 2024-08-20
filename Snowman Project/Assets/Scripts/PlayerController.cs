@@ -25,7 +25,6 @@ public class PlayerController : MonoBehaviour
     public AnimationCurve particleSpeedCurve;
 
     [Header("Movement Sounds")]
-    public SFXManager sfxManager;
     public float landAudioSoftThreshold = 0f;
     public float landAudioMediumThreshold = 2f;
     public float landAudioHardThreshold = 5f;
@@ -64,19 +63,19 @@ public class PlayerController : MonoBehaviour
 
             if (rb.velocity.y >= jumpAudioHardThreshold)
             {
-                sfxManager.PlayClip(SFX.JUMPHARD, 1f);
+                SFXManager.Instance.PlayClip(SFX.JUMPHARD, 1f);
                 jumpCooldown = jumpCooldownMax;
                 Debug.Log($"{rb.velocity.y} - HARD");
             }
             else if (rb.velocity.y >= jumpAudioMediumThreshold)
             {
-                sfxManager.PlayClip(SFX.JUMPMED, 1f);
+                SFXManager.Instance.PlayClip(SFX.JUMPMED, 1f);
                 jumpCooldown = jumpCooldownMax;
                 Debug.Log($"{rb.velocity.y} - MED");
             }
             else if (rb.velocity.y >= jumpAudioSoftThreshold)
             {
-                sfxManager.PlayClip(SFX.JUMPSOFT, 1f);
+                SFXManager.Instance.PlayClip(SFX.JUMPSOFT, 1f);
                 jumpCooldown = jumpCooldownMax;
                 Debug.Log($"{rb.velocity.y} - SOFT");
             }
@@ -106,17 +105,17 @@ public class PlayerController : MonoBehaviour
 
         if (GetImpulse(collision) >= landAudioHardThreshold)
         {
-            sfxManager.PlayClip(SFX.LANDHARD, 1f);
+            SFXManager.Instance.PlayClip(SFX.LANDHARD, 1f);
             //Debug.Log($"{GetImpulse(collision)} - HARD");
         }
         else if (GetImpulse(collision) >= landAudioMediumThreshold)
         {
-            sfxManager.PlayClip(SFX.LANDMED, 0.75f);
+            SFXManager.Instance.PlayClip(SFX.LANDMED, 0.75f);
             //Debug.Log($"{GetImpulse(collision)} - MED");
         }
         else if (GetImpulse(collision) >= landAudioSoftThreshold)
         {
-            sfxManager.PlayClip(SFX.LANDSOFT, 0.5f);
+            SFXManager.Instance.PlayClip(SFX.LANDSOFT, 0.5f);
             //Debug.Log($"{GetImpulse(collision)} - SOFT");
         }
     }
