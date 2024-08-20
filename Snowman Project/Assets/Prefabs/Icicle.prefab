@@ -180,7 +180,7 @@ MonoBehaviour:
   isBroken: 0
   iciclePrefab: {fileID: 798607203872777477, guid: e6505ec780e7d7c44820fc978efbf99a, type: 3}
   icicleStartScale: {x: 0, y: 0, z: 0}
-  regrowthCooldown: 4
+  regrowthCooldown: 8
 --- !u!50 &4310348387315718594
 Rigidbody2D:
   serializedVersion: 4

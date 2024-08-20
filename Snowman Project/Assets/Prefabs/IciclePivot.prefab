@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89a3fbd08858c134cbb48a74a7b6b485, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sizeBreakThreshold: 1.5
+  sizeBreakThreshold: 2
   canMove: 0
   meltLength: 3
   canBeBroken: 1
