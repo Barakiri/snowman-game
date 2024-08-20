@@ -74,7 +74,10 @@ public class Sizer : MonoBehaviour
     {
         if (collision.collider.CompareTag("Icicle"))
         {
-            collision.transform.parent.GetComponent<Icicle>().Break();
+            if (radius >= collision.transform.parent.GetComponent<Icicle>().sizeBreakThreshold)
+            {
+                collision.transform.parent.GetComponent<Icicle>().Break();
+            }
         }
     }
 
