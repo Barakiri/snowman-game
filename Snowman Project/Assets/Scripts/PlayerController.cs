@@ -76,17 +76,17 @@ public class PlayerController : MonoBehaviour
         if (GetImpulse(collision) >= landAudioHardThreshold)
         {
             sfxManager.PlayClip(SFX.LANDHARD, 1f);
-            Debug.Log($"{GetImpulse(collision)} - HARD");
+            //Debug.Log($"{GetImpulse(collision)} - HARD");
         }
         else if (GetImpulse(collision) >= landAudioMediumThreshold)
         {
             sfxManager.PlayClip(SFX.LANDMED, 0.75f);
-            Debug.Log($"{GetImpulse(collision)} - MED");
+            //Debug.Log($"{GetImpulse(collision)} - MED");
         }
         else if (GetImpulse(collision) >= landAudioSoftThreshold)
         {
             sfxManager.PlayClip(SFX.LANDSOFT, 0.5f);
-            Debug.Log($"{GetImpulse(collision)} - SOFT");
+            //Debug.Log($"{GetImpulse(collision)} - SOFT");
         }
     }
 

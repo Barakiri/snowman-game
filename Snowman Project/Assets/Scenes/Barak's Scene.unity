@@ -6113,7 +6113,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 9f71b320713642242bc9e49fe9656f8a, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -6209,7 +6209,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 115a82a927694604db7ece5e54a2e97b, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -6305,7 +6305,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: d1017dd311e4478479e74ffaa3f83629, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -6691,9 +6691,9 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   sfxManager: {fileID: 1110127577}
-  landAudioSoftThreshold: 0
-  landAudioMediumThreshold: 2
-  landAudioHardThreshold: 5
+  landAudioSoftThreshold: 3
+  landAudioMediumThreshold: 5
+  landAudioHardThreshold: 20
 --- !u!114 &1452160778
 MonoBehaviour:
   m_ObjectHideFlags: 0
