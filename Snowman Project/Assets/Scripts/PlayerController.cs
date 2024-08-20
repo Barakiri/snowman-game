@@ -39,11 +39,6 @@ public class PlayerController : MonoBehaviour
     public float jumpCooldownMax = 0.3f;
     float jumpCooldown = 0f;
 
-    [Header("Cosmetics")]
-    public Transform ballOneBase;
-    public Transform ballTwoBase;
-    public Transform ballThreeBase;
-
 
     private void Awake()
     {

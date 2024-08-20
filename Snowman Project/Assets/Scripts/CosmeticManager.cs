@@ -9,6 +9,7 @@ public class CosmeticManager : MonoBehaviour
     public static CosmeticManager Instance;
 
     public List<Cosmetic> cosmetics = new List<Cosmetic>();
+    public List<float> sizeStorage = new List<float>();
     public int currentBall = 1;
 
 
@@ -45,6 +46,37 @@ public class CosmeticManager : MonoBehaviour
 
     }
 
+    public void StoreSize(int i)
+    {
+        sizeStorage[i-1] = PlayerController.Instance.gameObject.GetComponent<Sizer>().radius;
+    }
+
+    public void SetFinal()
+    {
+        FinalSizeSetter.Instance.ball1.localScale = Vector3.one * sizeStorage[0];
+        FinalSizeSetter.Instance.ball2.localScale = Vector3.one * sizeStorage[1];
+        FinalSizeSetter.Instance.ball3.localScale = Vector3.one * sizeStorage[2];
+
+        foreach (var c in cosmetics)
+        {
+            if (c.enabled)
+            {
+                if (c.ball == 1)
+                {
+                    FinalSizeSetter.Instance.ball1.GetChild(0).GetChild(c.iBall).gameObject.SetActive(true);
+                }
+                if (c.ball == 2)
+                {
+                    FinalSizeSetter.Instance.ball2.GetChild(0).GetChild(c.iBall).gameObject.SetActive(true);
+                }
+                if (c.ball == 3)
+                {
+                    FinalSizeSetter.Instance.ball3.GetChild(0).GetChild(c.iBall).gameObject.SetActive(true);
+                }
+            }
+        }
+    }
+
     public void CosmeticUpdate(bool disable)
     {
         if (disable)
@@ -56,19 +88,19 @@ public class CosmeticManager : MonoBehaviour
                     switch (currentBall)
                     {
                         case 1:
-                            PlayerController.Instance.ballOneBase.GetChild(c.iBall).gameObject.SetActive(true);
+                            PlayerController.Instance.transform.GetChild(currentBall).GetChild(c.iBall).gameObject.SetActive(true);
                             DisableAllInBall(2);
                             DisableAllInBall(3);
                             break;
                         case 2:
                             DisableAllInBall(1);
-                            PlayerController.Instance.ballTwoBase.GetChild(c.iBall).gameObject.SetActive(true);
+                            PlayerController.Instance.transform.GetChild(currentBall).GetChild(c.iBall).gameObject.SetActive(true);
                             DisableAllInBall(3);
                             break;
                         case 3:
                             DisableAllInBall(1);
                             DisableAllInBall(2);
-                            PlayerController.Instance.ballThreeBase.GetChild(c.iBall).gameObject.SetActive(true);
+                            PlayerController.Instance.transform.GetChild(currentBall).GetChild(c.iBall).gameObject.SetActive(true);
                             break;
                         default:
                             break;
@@ -85,13 +117,13 @@ public class CosmeticManager : MonoBehaviour
                     switch (currentBall)
                     {
                         case 1:
-                            PlayerController.Instance.ballOneBase.GetChild(c.iBall).gameObject.SetActive(true);
+                            PlayerController.Instance.transform.GetChild(currentBall).GetChild(c.iBall).gameObject.SetActive(true);
                             break;
                         case 2:
-                            PlayerController.Instance.ballTwoBase.GetChild(c.iBall).gameObject.SetActive(true);
+                            PlayerController.Instance.transform.GetChild(currentBall).GetChild(c.iBall).gameObject.SetActive(true);
                             break;
                         case 3:
-                            PlayerController.Instance.ballThreeBase.GetChild(c.iBall).gameObject.SetActive(true);
+                            PlayerController.Instance.transform.GetChild(currentBall).GetChild(c.iBall).gameObject.SetActive(true);
                             break;
                     }
                 }
@@ -104,21 +136,21 @@ public class CosmeticManager : MonoBehaviour
         switch (ball)
         {
             case 1:
-                for (int i = 0; i >= PlayerController.Instance.ballOneBase.childCount; i++)
+                for (int i = 0; i >= PlayerController.Instance.transform.GetChild(currentBall).childCount; i++)
                 {
-                    PlayerController.Instance.ballOneBase.GetChild(i).gameObject.SetActive(false);
+                    PlayerController.Instance.transform.GetChild(currentBall).GetChild(i).gameObject.SetActive(false);
                 }
                 break;
             case 2:
-                for (int i = 0; i >= PlayerController.Instance.ballTwoBase.childCount; i++)
+                for (int i = 0; i >= PlayerController.Instance.transform.GetChild(currentBall).childCount; i++)
                 {
-                    PlayerController.Instance.ballTwoBase.GetChild(i).gameObject.SetActive(false);
+                    PlayerController.Instance.transform.GetChild(currentBall).GetChild(i).gameObject.SetActive(false);
                 }
                 break;
             case 3:
-                for (int i = 0; i >= PlayerController.Instance.ballThreeBase.childCount; i++)
+                for (int i = 0; i >= PlayerController.Instance.transform.GetChild(currentBall).childCount; i++)
                 {
-                    PlayerController.Instance.ballThreeBase.GetChild(i).gameObject.SetActive(false);
+                    PlayerController.Instance.transform.GetChild(currentBall).GetChild(i).gameObject.SetActive(false);
                 }
                 break;
         }

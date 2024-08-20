@@ -42,9 +42,16 @@ public class LevelTransition : MonoBehaviour
                 SceneManager.LoadScene(nextLevel);
                 CosmeticManager.Instance.currentBall = nextLevel;
                 if (nextLevel != 4)
+                {
                     CosmeticManager.Instance.CosmeticUpdate(true);
+                    CosmeticManager.Instance.StoreSize(nextLevel - 1);
+                }
                 else
+                {
+                    CosmeticManager.Instance.StoreSize(nextLevel - 1);
                     CosmeticManager.Instance.CosmeticUpdate(false);
+                    CosmeticManager.Instance.SetFinal();
+                }
             }
             fade.color = new Color(fade.color.r, fade.color.g, fade.color.b, fadeCurrent / fadeDuration);
 
