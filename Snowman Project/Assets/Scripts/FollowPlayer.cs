@@ -4,24 +4,8 @@ using UnityEngine;
 
 public class FollowPlayer : MonoBehaviour
 {
-    public static FollowPlayer Instance;
-
 
     public Vector3 offset;
-    public ParticleSystem system1;
-    public ParticleSystem system2;
-
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
 
     void Update()
     {

@@ -145,8 +145,8 @@ public class PlayerController : MonoBehaviour
 
     void SetEmission(float rate)
     {
-        var emission1 = FollowPlayer.Instance.system1.emission;
-        var emission2 = FollowPlayer.Instance.system2.emission;
+        var emission1 = FollowPlayerParticle.Instance.system1.emission;
+        var emission2 = FollowPlayerParticle.Instance.system2.emission;
 
         emission1.rateOverTime = rate;
         emission2.rateOverTime = rate;
