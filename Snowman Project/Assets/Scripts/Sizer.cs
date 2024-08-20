@@ -28,7 +28,6 @@ public class Sizer : MonoBehaviour
     [Header("SFX")]
     public SFXManager sfxManager;
     public float maxSpeedForGrowingAudio = 2f;
-    bool touchingCold = false;
 
     // Start is called before the first frame update
     void Start()
@@ -47,7 +46,7 @@ public class Sizer : MonoBehaviour
         else
             musicManager.SetMusicLevel(1f);
 
-        if (!touchingCold) sfxManager.SetGrowingVolume(0f);
+        
 
         if (Input.GetKeyDown(KeyCode.K))
         {
@@ -67,7 +66,6 @@ public class Sizer : MonoBehaviour
         }
         else if (collision.collider.CompareTag("Cold"))
         {
-            touchingCold = true;
             GrowSize(Mathf.Abs(rb.velocity.x));
         }
     }
@@ -75,7 +73,8 @@ public class Sizer : MonoBehaviour
     void GrowSize(float amount)
     {
         transform.localScale += Vector3.one * GrowthRate * Time.deltaTime * amount;
-        sfxManager.SetGrowingVolume( amount / maxSpeedForGrowingAudio);
+        if (amount > maxSpeedForGrowingAudio) sfxManager.SetVolumeGoal(SFX.GROW, 1f);
+        else sfxManager.SetVolumeGoal( SFX.GROW, amount / maxSpeedForGrowingAudio);
         radius = transform.localScale[0];
     }
 
@@ -87,6 +86,7 @@ public class Sizer : MonoBehaviour
         else
             transform.localScale = localScale;
 
+        sfxManager.SetVolumeGoal( SFX.SHRINK, 1f);
         radius = transform.localScale[0];
     }
 
@@ -94,7 +94,7 @@ public class Sizer : MonoBehaviour
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.collider.CompareTag("Cold"))
-            touchingCold = false;
+            sfxManager.SetVolumeGoal(SFX.GROW, 0f);
     }
 
     private void sizeDeathCheck()
