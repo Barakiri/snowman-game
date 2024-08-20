@@ -11,10 +11,8 @@ public class Sizer : MonoBehaviour
     public float GrowthRate = 10f;
 
     // Size Checks
-    public float MinSize = 0.5f;
-    public float TrueMinSize = 0.2f;
-    public float DeathDelay = 5f;
-    public float rtimer = 0f;
+    public float minSize = 0.5f;
+    public float maxSize = 5f;
 
     Rigidbody2D rb;
 
@@ -36,7 +34,6 @@ public class Sizer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        sizeDeathCheck();
         if (radius <= maxSizeForMusic)
         {
             MusicManager.Instance.SetMusicLevel(radius / maxSizeForMusic);
@@ -85,17 +82,21 @@ public class Sizer : MonoBehaviour
 
     void GrowSize(float amount)
     {
-        transform.localScale += Vector3.one * GrowthRate * Time.deltaTime * amount;
         if (amount > maxSpeedForGrowingAudio) SFXManager.Instance.SetVolumeGoal(SFX.GROW, 1f);
         else SFXManager.Instance.SetVolumeGoal( SFX.GROW, amount / maxSpeedForGrowingAudio);
+
+        if (radius >= maxSize)
+            transform.localScale = Vector3.one * maxSize;
+        else
+            transform.localScale += Vector3.one * GrowthRate * Time.deltaTime * amount;
         radius = transform.localScale[0];
     }
 
     void ShrinkSize()
     {
         Vector3 localScale = transform.localScale - (Vector3.one * ShrinkingRate * Time.deltaTime);
-        if (radius <= TrueMinSize)
-            transform.localScale = Vector3.one * TrueMinSize;
+        if (radius <= minSize)
+            transform.localScale = Vector3.one * minSize;
         else
             transform.localScale = localScale;
 
@@ -108,23 +109,7 @@ public class Sizer : MonoBehaviour
     {
         if (collision.collider.CompareTag("Cold"))
             SFXManager.Instance.SetVolumeGoal(SFX.GROW, 0f);
-    }
-
-    private void sizeDeathCheck()
-    {
-        // Size based death check
-        if (rtimer >= DeathDelay)
-        {
-            //print("death" + radius); // Add death logic here.
-            return;
-        }
-        if (radius > MinSize)
-        {
-            rtimer = 0;
-        }
-        else
-        {
-            rtimer += Time.deltaTime;
-        }
+        if (collision.collider.CompareTag("Hot"))
+            SFXManager.Instance.SetVolumeGoal(SFX.SHRINK, 0f);
     }
 }

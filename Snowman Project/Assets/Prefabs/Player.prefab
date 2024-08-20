@@ -181,12 +181,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShrinkingRate: 2
   GrowthRate: 0.1
-  MinSize: 0.5
-  TrueMinSize: 0.2
-  DeathDelay: 5
-  rtimer: 0
+  minSize: 0.5
+  maxSize: 4.25
   radius: 1
-  musicManager: {fileID: 0}
   maxSizeForMusic: 3
   minSizeForMusic: 0.5
   maxSpeedForGrowingAudio: 5
