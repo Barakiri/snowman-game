@@ -3,12 +3,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum SFX { GROW, SHRINK , LANDSOFT , LANDMED, LANDHARD , JUMPSOFT , JUMPMED , JUMPHARD }
+public enum SFX { GROW, SHRINK , LANDSOFT , LANDMED, LANDHARD , JUMPSOFT , JUMPMED , JUMPHARD , ICICLEHARD , ICICLEBREAK }
 
 public class SFXManager : MonoBehaviour
 {
+    public static SFXManager Instance;
     public List<SFXProperty> propsLoop;
     public List<SFXProperty> propsOneShot;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     // Start is called before the first frame update
     void Start()

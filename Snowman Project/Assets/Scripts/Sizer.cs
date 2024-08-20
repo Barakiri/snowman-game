@@ -78,6 +78,10 @@ public class Sizer : MonoBehaviour
             {
                 collision.transform.parent.GetComponent<Icicle>().Break();
             }
+            else
+            {
+                SFXManager.Instance.PlayClip(SFX.ICICLEHARD, 1f);
+            }
         }
     }
 

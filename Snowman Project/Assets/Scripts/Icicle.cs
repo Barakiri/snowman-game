@@ -69,6 +69,7 @@ public class Icicle : MonoBehaviour
 
     public void Break()
     {
+        SFXManager.Instance.PlayClip(SFX.ICICLEBREAK, 1f);
         broken = true;
         baseIcicle.isBroken = true;
         transform.GetChild(0).GetComponent<PolygonCollider2D>().enabled = false;
