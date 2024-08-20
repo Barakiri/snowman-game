@@ -14,5 +14,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level2caycay.unity
     guid: 9926400c928bddb40841e8a736f935da
+  - enabled: 1
+    path: Assets/Scenes/Level3caycay.unity
+    guid: 15a62a32f3491994ca8522649b1d804b
+  - enabled: 1
+    path: Assets/Scenes/Final Level.unity
+    guid: face2329280000949ab1780a3a4ac565
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 99f1a896740eb884ab5aff628f9484f4, type: 2}
