@@ -40,6 +40,11 @@ public class LevelTransition : MonoBehaviour
             if (fadeCurrent >= fadeDuration) 
             { 
                 SceneManager.LoadScene(nextLevel);
+                CosmeticManager.Instance.currentBall = nextLevel;
+                if (nextLevel != 4)
+                    CosmeticManager.Instance.CosmeticUpdate(true);
+                else
+                    CosmeticManager.Instance.CosmeticUpdate(false);
             }
             fade.color = new Color(fade.color.r, fade.color.g, fade.color.b, fadeCurrent / fadeDuration);
 
