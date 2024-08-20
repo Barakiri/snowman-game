@@ -9,6 +9,6 @@ public class FollowPlayer : MonoBehaviour
 
     void Update()
     {
-        transform.position = PlayerController.Instance.transform.position + new Vector3(offset.x, -PlayerController.Instance.gameObject.GetComponent<Sizer>().radius, offset.z);
+        transform.position = PlayerController.Instance.transform.position + new Vector3(offset.x, -PlayerController.Instance.gameObject.GetComponent<Sizer>().radius + offset.y, offset.z);
     }
 }

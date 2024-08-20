@@ -11,6 +11,10 @@ public class PlayerController : MonoBehaviour
     public float speed = 15f;
     public float jumpForce;
 
+    Animator Animator;
+    SpriteRenderer FoxSprite;
+    FollowPlayer FoxFollow;
+
     Rigidbody2D rb;
     float inputX;
     float inputY;
@@ -51,6 +55,9 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        Animator = GameObject.Find("Animation").GetComponent<Animator>();
+        FoxSprite = GameObject.Find("Animation").GetComponent<SpriteRenderer>();
+        FoxFollow = GameObject.Find("AnimationHolder").GetComponent<FollowPlayer>();
     }
 
     // Update is called once per frame
@@ -110,6 +117,8 @@ public class PlayerController : MonoBehaviour
             SetEmission( Mathf.Lerp(0, particleMaxRate, particleSpeedCurve.Evaluate(Mathf.Clamp01(Mathf.Abs(rb.velocity.x) / particleMaxSpeed))) );
         else
             SetEmission(0);
+
+        HandleAnimations();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -150,5 +159,38 @@ public class PlayerController : MonoBehaviour
 
         emission1.rateOverTime = rate;
         emission2.rateOverTime = rate;
+    }
+
+    void HandleAnimations()
+    {
+        if (!grounded)
+        {
+            Animator.SetBool("IsAirborne", true);
+        }
+        else
+        {
+            Animator.SetBool("IsAirborne", false);
+        }
+
+        if (Mathf.Abs(rb.velocity.x) > 0.5 && grounded)
+        {
+            Animator.SetBool("IsWalking", true);
+        }
+        else
+        {
+            Animator.SetBool("IsWalking", false);
+        }
+
+        if (rb.velocity.x < 0.5 && grounded)
+        {
+            FoxSprite.flipX = true;
+            FoxFollow.offset.x = 1;
+        }
+
+        if (rb.velocity.x > -0.5 && grounded)
+        {
+            FoxSprite.flipX = false;
+            FoxFollow.offset.x = -1;
+        }
     }
 }
