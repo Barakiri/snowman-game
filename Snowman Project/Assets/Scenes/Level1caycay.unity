@@ -13237,11 +13237,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 190834762001851099, guid: 792c2275fbed84a41b110357bf1374fa, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 53.7428
+      value: 54.97
       objectReference: {fileID: 0}
     - target: {fileID: 190834762001851099, guid: 792c2275fbed84a41b110357bf1374fa, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -27.62
+      value: -26.84
       objectReference: {fileID: 0}
     - target: {fileID: 190834762001851099, guid: 792c2275fbed84a41b110357bf1374fa, type: 3}
       propertyPath: m_LocalPosition.z
@@ -13309,7 +13309,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6263693864709953312, guid: 792c2275fbed84a41b110357bf1374fa, type: 3}
       propertyPath: m_Name
-      value: Pickup (1)
+      value: button
       objectReference: {fileID: 0}
     - target: {fileID: 8860452626181842713, guid: 792c2275fbed84a41b110357bf1374fa, type: 3}
       propertyPath: m_Sprite
@@ -13657,7 +13657,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7538421339798504906, guid: 6042c23053d58454a94cead4ececd794, type: 3}
       propertyPath: optionalPickups.Array.size
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7538421339798504906, guid: 6042c23053d58454a94cead4ececd794, type: 3}
       propertyPath: optionalPickups.Array.data[0].name
@@ -13669,7 +13669,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7538421339798504906, guid: 6042c23053d58454a94cead4ececd794, type: 3}
       propertyPath: optionalPickups.Array.data[2].name
-      value: LEFT BOOT
+      value: SNOWFLAKE
       objectReference: {fileID: 0}
     - target: {fileID: 7538421339798504906, guid: 6042c23053d58454a94cead4ececd794, type: 3}
       propertyPath: optionalPickups.Array.data[3].name
@@ -13698,7 +13698,7 @@ PrefabInstance:
     - target: {fileID: 7538421339798504906, guid: 6042c23053d58454a94cead4ececd794, type: 3}
       propertyPath: optionalPickups.Array.data[2].pickup
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 139956006}
     - target: {fileID: 7538421339798504906, guid: 6042c23053d58454a94cead4ececd794, type: 3}
       propertyPath: optionalPickups.Array.data[3].pickup
       value: 
@@ -13714,7 +13714,7 @@ PrefabInstance:
     - target: {fileID: 7538421339798504906, guid: 6042c23053d58454a94cead4ececd794, type: 3}
       propertyPath: optionalPickups.Array.data[6].pickup
       value: 
-      objectReference: {fileID: 139956006}
+      objectReference: {fileID: 0}
     - target: {fileID: 7538421339798504906, guid: 6042c23053d58454a94cead4ececd794, type: 3}
       propertyPath: optionalPickups.Array.data[0].cosmetic
       value: 12
@@ -13725,7 +13725,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7538421339798504906, guid: 6042c23053d58454a94cead4ececd794, type: 3}
       propertyPath: optionalPickups.Array.data[2].cosmetic
-      value: 13
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 7538421339798504906, guid: 6042c23053d58454a94cead4ececd794, type: 3}
       propertyPath: optionalPickups.Array.data[3].cosmetic
@@ -13741,7 +13741,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7538421339798504906, guid: 6042c23053d58454a94cead4ececd794, type: 3}
       propertyPath: optionalPickups.Array.data[6].cosmetic
-      value: 17
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

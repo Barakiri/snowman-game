@@ -81,6 +81,10 @@ public class CosmeticManager : MonoBehaviour
     {
         if (disable)
         {
+            for (int i = 0; i < cosmetics.Count; i++)
+            {
+                //Debug.Log($"{i}, {cosmetics[i].enabled}");
+            }
             foreach (var c in cosmetics)
             {
                 if (c.ball == currentBall && c.enabled)
@@ -89,6 +93,7 @@ public class CosmeticManager : MonoBehaviour
                     {
                         case 1:
                             PlayerController.Instance.transform.GetChild(currentBall).GetChild(c.iBall).gameObject.SetActive(true);
+                            Debug.Log(PlayerController.Instance.transform.GetChild(currentBall).GetChild(c.iBall).gameObject.name);
                             DisableAllInBall(2);
                             DisableAllInBall(3);
                             break;
@@ -136,21 +141,21 @@ public class CosmeticManager : MonoBehaviour
         switch (ball)
         {
             case 1:
-                for (int i = 0; i >= PlayerController.Instance.transform.GetChild(currentBall).childCount; i++)
+                for (int i = 0; i >= PlayerController.Instance.transform.GetChild(ball).childCount; i++)
                 {
-                    PlayerController.Instance.transform.GetChild(currentBall).GetChild(i).gameObject.SetActive(false);
+                    PlayerController.Instance.transform.GetChild(ball).GetChild(i).gameObject.SetActive(false);
                 }
                 break;
             case 2:
-                for (int i = 0; i >= PlayerController.Instance.transform.GetChild(currentBall).childCount; i++)
+                for (int i = 0; i >= PlayerController.Instance.transform.GetChild(ball).childCount; i++)
                 {
-                    PlayerController.Instance.transform.GetChild(currentBall).GetChild(i).gameObject.SetActive(false);
+                    PlayerController.Instance.transform.GetChild(ball).GetChild(i).gameObject.SetActive(false);
                 }
                 break;
             case 3:
-                for (int i = 0; i >= PlayerController.Instance.transform.GetChild(currentBall).childCount; i++)
+                for (int i = 0; i >= PlayerController.Instance.transform.GetChild(ball).childCount; i++)
                 {
-                    PlayerController.Instance.transform.GetChild(currentBall).GetChild(i).gameObject.SetActive(false);
+                    PlayerController.Instance.transform.GetChild(ball).GetChild(i).gameObject.SetActive(false);
                 }
                 break;
         }

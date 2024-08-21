@@ -22,7 +22,6 @@ public class Collector : MonoBehaviour
         if (collision.transform.CompareTag("Pickup"))
         {
             GameManager.Instance.CollectPickup(collision.gameObject);
-            Destroy(collision.gameObject);
         }
     }
 }

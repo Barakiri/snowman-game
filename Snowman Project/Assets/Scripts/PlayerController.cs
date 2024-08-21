@@ -85,19 +85,19 @@ public class PlayerController : MonoBehaviour
             {
                 SFXManager.Instance.PlayClip(SFX.JUMPHARD, 1f);
                 jumpCooldown = jumpCooldownMax;
-                Debug.Log($"{rb.velocity.y} - HARD");
+                //Debug.Log($"{rb.velocity.y} - HARD");
             }
             else if (rb.velocity.y >= jumpAudioMediumThreshold)
             {
                 SFXManager.Instance.PlayClip(SFX.JUMPMED, 1f);
                 jumpCooldown = jumpCooldownMax;
-                Debug.Log($"{rb.velocity.y} - MED");
+                //Debug.Log($"{rb.velocity.y} - MED");
             }
             else if (rb.velocity.y >= jumpAudioSoftThreshold)
             {
                 SFXManager.Instance.PlayClip(SFX.JUMPSOFT, 1f);
                 jumpCooldown = jumpCooldownMax;
-                Debug.Log($"{rb.velocity.y} - SOFT");
+                //Debug.Log($"{rb.velocity.y} - SOFT");
             }
 
         }

@@ -45,11 +45,13 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < optionalPickups.Count; i++)
         {
+            Debug.Log($"{optionalPickups[i].pickup.name} - {pickup.name}");
             if (optionalPickups[i].pickup == pickup)
             {
                 optionalPickups[i].grabbed = true;
-                CosmeticManager.Instance.cosmetics[i].enabled = true;
+                CosmeticManager.Instance.cosmetics[optionalPickups[i].cosmetic].enabled = true;
                 CosmeticManager.Instance.CosmeticUpdate(true);
+                Destroy(pickup);
             }
         }
     }
